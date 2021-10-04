@@ -1,13 +1,15 @@
 package br.com.minhaempresa.service;
 
+import br.com.minhaempresa.domain.Operacao;
+
 public class CalculadoraService {
 
-    public double calcular(double operandoA, double operandoB, int operacao){
+    public double calcular(double operandoA, double operandoB, Operacao operacao){
         switch (operacao){
-            case 0: {return somar(operandoA, operandoB);}
-            case 1: {return subtrair(operandoA, operandoB);}
-            case 2: {return multiplicar(operandoA, operandoB);}
-            case 3: {return dividir(operandoA, operandoB);}
+            case SOMA: {return somar(operandoA, operandoB);}
+            case SUBTRACAO: {return subtrair(operandoA, operandoB);}
+            case MULTIPLICACAO: {return multiplicar(operandoA, operandoB);}
+            case DIVISAO: {return dividir(operandoA, operandoB);}
             default: {return 0;}
         }
     }
@@ -21,7 +23,10 @@ public class CalculadoraService {
     private double multiplicar(double operandoA, double operandoB){
         return operandoA * operandoB;
     }
-    private double dividir(double operandoA, double operandoB){
+    private double dividir (double operandoA, double operandoB){
+        if(operandoB == 0){
+            throw new ArithmeticException();
+        }
         return operandoA / operandoB;
     }
 
